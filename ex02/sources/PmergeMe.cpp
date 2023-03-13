@@ -6,7 +6,7 @@
 /*   By: smagdela <smagdela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:18:38 by smagdela          #+#    #+#             */
-/*   Updated: 2023/03/13 17:28:13 by smagdela         ###   ########.fr       */
+/*   Updated: 2023/03/13 17:30:52 by smagdela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,11 @@ static void	merge_vect(std::vector<int> &vect, size_t start, size_t half, size_t
 
 static void	insertion_vect(std::vector<int> &vect, size_t start, size_t end)
 {
-	if (end == start + 1)
+	if ((end == start + 1) && (vect[start] > vect[end]))
 	{
-		if (vect[start] > vect[end])
-		{
-			int	tmp = vect[start];
-			vect[start] = vect[end];
-			vect[end] = tmp;
-		}
+		int	tmp = vect[start];
+		vect[start] = vect[end];
+		vect[end] = tmp;
 	}
 }
 
@@ -37,14 +34,11 @@ static void	merge_dq(std::deque<int> &dq, size_t start, size_t half, size_t end)
 
 static void	insertion_dq(std::deque<int> &dq, size_t start, size_t end)
 {
-	if (end == start + 1)
+	if ( (end == start + 1) && (dq[start] > dq[end]))
 	{
-		if (dq[start] > dq[end])
-		{
-			int	tmp = dq[start];
-			dq[start] = dq[end];
-			dq[end] = tmp;
-		}
+		int	tmp = dq[start];
+		dq[start] = dq[end];
+		dq[end] = tmp;
 	}
 }
 
