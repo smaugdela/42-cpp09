@@ -6,7 +6,7 @@
 #    By: smagdela <smagdela@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 10:45:38 by smagdela          #+#    #+#              #
-#    Updated: 2023/03/13 14:47:01 by smagdela         ###   ########.fr        #
+#    Updated: 2023/03/14 17:50:54 by smagdela         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 #	Variables	#
 #################
 
-BIN	=	
+NAME	=	
 
 INCS	=	
 SRCS	=	main.cpp
@@ -67,7 +67,7 @@ NC      =	\033[0m
 #	Rules	#
 #############
 
-all:	${BIN}
+all:	${NAME}
 
 ${OBJD}%.o:	${SRCD}%.cpp
 	@echo "${S_CYAN}➤ Compiling $@...${NC}"
@@ -75,10 +75,10 @@ ${OBJD}%.o:	${SRCD}%.cpp
 	@${CXX} ${CXXFLAGS} -c -o $@ -I${INCD} $<
 	@echo "${S_GREEN}✔ Object file built!\n${NC}"
 
-${BIN}:	${OBJS}
+${NAME}:	${OBJS}
 	@echo "${S_CYAN}➤ Compiling $@...${NC}"
-	@${CXX} ${CXXFLAGS} ${OBJS} -o ${BIN}
-	@echo "${S_GREEN}✔ Binary available!\n${NC}"
+	@${CXX} ${CXXFLAGS} ${OBJS} -o ${NAME}
+	@echo "${S_GREEN}✔ NAMEary available!\n${NC}"
 
 clean:
 	@echo "${S_RED}➤ Deleting object files...${NC}"
@@ -87,7 +87,7 @@ clean:
 
 fclean:	clean
 	@echo "${S_RED}➤ Deleting executable...${NC}"
-	@-rm -rf ${BIN}
+	@-rm -rf ${NAME}
 	@echo "${S_GREEN}✔ Executable deleted!\n${NC}"
 
 re:	fclean	all
