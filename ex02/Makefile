@@ -6,7 +6,7 @@
 #    By: smagdela <smagdela@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 10:45:38 by smagdela          #+#    #+#              #
-#    Updated: 2023/03/13 14:47:01 by smagdela         ###   ########.fr        #
+#    Updated: 2023/03/14 16:33:25 by smagdela         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,10 +14,10 @@
 #	Variables	#
 #################
 
-BIN	=	
+BIN	=	PmergeMe
 
-INCS	=	
-SRCS	=	main.cpp
+INCS	=	PmergeMe.hpp
+SRCS	=	main.cpp	PmergeMe.cpp
 OBJS	=	${SRCS:.cpp=.o}
 
 INCD	=	includes/
@@ -29,7 +29,7 @@ OBJS	:=	${addprefix ${OBJD},${OBJS}}
 SRCS	:=	${addprefix ${SRCD},${SRCS}}
 
 CXX		=	c++
-CXXFLAGS 	=	-g -std=c++98 -Wall -Wextra -Werror
+CXXFLAGS 	=	-std=c++98 -Wall -Wextra -Werror
 
 #################
 #	Fancy Stuff	#

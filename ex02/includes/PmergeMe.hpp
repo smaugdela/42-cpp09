@@ -6,7 +6,7 @@
 /*   By: smagdela <smagdela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:18:49 by smagdela          #+#    #+#             */
-/*   Updated: 2023/03/13 17:25:31 by smagdela         ###   ########.fr       */
+/*   Updated: 2023/03/14 16:44:00 by smagdela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,16 @@
 
 #include <stdlib.h>
 #include <iostream>
+#include <string>
+#include <cstdlib>
+#include <time.h>
+#include <iomanip>
 #include <vector>
 #include <deque>
 
-void	merge_insert_sort(std::deque<int> arg_array);
+#define TOKENS "0123456789 +"
+#define STR_INT_MAX std::string("2147483647")
+
+int	merge_insert_sort(std::deque<int> arg_array);
 
 #endif // !PMERGE_ME_HPP
