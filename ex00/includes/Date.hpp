@@ -6,7 +6,7 @@
 /*   By: smagdela <smagdela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 13:33:17 by smagdela          #+#    #+#             */
-/*   Updated: 2023/03/15 14:24:17 by smagdela         ###   ########.fr       */
+/*   Updated: 2023/03/15 16:11:13 by smagdela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <iostream>
 # include <string>
+# include <cstdlib>
+# include <limits.h>
 
 class Date
 {

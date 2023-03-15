@@ -6,7 +6,7 @@
 #    By: smagdela <smagdela@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 10:45:38 by smagdela          #+#    #+#              #
-#    Updated: 2023/03/15 13:32:22 by smagdela         ###   ########.fr        #
+#    Updated: 2023/03/15 16:09:20 by smagdela         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@
 
 NAME	=	btc
 
-INCS	=	BitcoinExchange.hpp
-SRCS	=	main.cpp	BitcoinExchange.cpp
+INCS	=	BitcoinExchange.hpp	Date.hpp
+SRCS	=	main.cpp	BitcoinExchange.cpp	Date.cpp
 OBJS	=	${SRCS:.cpp=.o}
 
 INCD	=	includes/

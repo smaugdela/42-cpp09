@@ -6,7 +6,7 @@
 /*   By: smagdela <smagdela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 13:33:17 by smagdela          #+#    #+#             */
-/*   Updated: 2023/03/15 14:24:46 by smagdela         ###   ########.fr       */
+/*   Updated: 2023/03/15 16:15:18 by smagdela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Date::Date() : _raw(), _year(INT32_MAX), _month(INT32_MAX), _day(INT32_MAX), _validity(false)
+Date::Date() : _raw(), _year(INT_MAX), _month(INT_MAX), _day(INT_MAX), _validity(false)
 {}
 
 Date::Date( std::string str_date )
@@ -31,8 +31,8 @@ Date::Date( std::string str_date )
 
 	std::string	year, month, day;
 	year = str_date.substr(0, 4);
-	month = str_date.substr(5, 2);
-	day = str_date.substr(8, 2);
+	month = str_date.substr(2, 2);
+	day = str_date.substr(2, 2);
 
 	this->_year = std::atoi(year.c_str());
 	this->_month = std::atoi(month.c_str());
