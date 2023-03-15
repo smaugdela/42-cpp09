@@ -6,7 +6,7 @@
 #    By: smagdela <smagdela@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 10:45:38 by smagdela          #+#    #+#              #
-#    Updated: 2023/03/14 17:51:14 by smagdela         ###   ########.fr        #
+#    Updated: 2023/03/15 11:42:50 by smagdela         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,7 +78,7 @@ ${OBJD}%.o:	${SRCD}%.cpp
 ${NAME}:	${OBJS}
 	@echo "${S_CYAN}➤ Compiling $@...${NC}"
 	@${CXX} ${CXXFLAGS} ${OBJS} -o ${NAME}
-	@echo "${S_GREEN}✔ NAMEary available!\n${NC}"
+	@echo "${S_GREEN}✔ Binary available!\n${NC}"
 
 clean:
 	@echo "${S_RED}➤ Deleting object files...${NC}"

@@ -6,7 +6,7 @@
 #    By: smagdela <smagdela@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 10:45:38 by smagdela          #+#    #+#              #
-#    Updated: 2023/03/14 17:50:54 by smagdela         ###   ########.fr        #
+#    Updated: 2023/03/15 13:32:22 by smagdela         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,10 +14,10 @@
 #	Variables	#
 #################
 
-NAME	=	
+NAME	=	btc
 
-INCS	=	
-SRCS	=	main.cpp
+INCS	=	BitcoinExchange.hpp
+SRCS	=	main.cpp	BitcoinExchange.cpp
 OBJS	=	${SRCS:.cpp=.o}
 
 INCD	=	includes/
@@ -78,7 +78,7 @@ ${OBJD}%.o:	${SRCD}%.cpp
 ${NAME}:	${OBJS}
 	@echo "${S_CYAN}➤ Compiling $@...${NC}"
 	@${CXX} ${CXXFLAGS} ${OBJS} -o ${NAME}
-	@echo "${S_GREEN}✔ NAMEary available!\n${NC}"
+	@echo "${S_GREEN}✔ Binary available!\n${NC}"
 
 clean:
 	@echo "${S_RED}➤ Deleting object files...${NC}"

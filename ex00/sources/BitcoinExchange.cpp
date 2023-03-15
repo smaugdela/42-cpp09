@@ -6,18 +6,21 @@
 /*   By: smagdela <smagdela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 17:48:57 by smagdela          #+#    #+#             */
-/*   Updated: 2023/03/14 18:28:40 by smagdela         ###   ########.fr       */
+/*   Updated: 2023/03/15 14:46:12 by smagdela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
+#include "Date.hpp"
 
 int	BitcoinExchange(std::ifstream &file, std::ifstream &database_file)
 {
-	std::map<std::string, float>	db;
-	std::string						line;
-	std::string						date;
-	std::string						value;
+	std::map<Date, float>	db;
+	std::string				line;
+	std::string				date;
+	Date					key;
+	std::string				value;
+	float					rate;
 
 	// Load csv database into map container.
 	while (getline(database_file, line))
@@ -25,7 +28,8 @@ int	BitcoinExchange(std::ifstream &file, std::ifstream &database_file)
 		if (line.empty())
 			continue ;
 		date = line.substr(0, line.find(','));
-		if (date.size() != 10 || date[4] != '-' || date[7] != '-' || date.find_first_not_of("0123456789-", 0) != std::string::npos)
+		key = Date(date);
+		if (key.is_valid() == false)
 		{
 			std::cout << "Error: invalid csv date format." << std::endl;
 			return (EXIT_FAILURE);
@@ -36,16 +40,43 @@ int	BitcoinExchange(std::ifstream &file, std::ifstream &database_file)
 			std::cout << "Error: invalid csv value format." << std::endl;
 			return (EXIT_FAILURE);
 		}
-		db[date] = std::atof(value.c_str());
+		db[key] = std::atof(value.c_str());
 	}
 
+	size_t	len;
 	// Read file line by line and print the value of the bitcoin at the date of the transaction.
 	while (getline(file, line))
 	{
 		if (line.empty())
 			continue ;
 
-		// Should create a Date class to help manipulate dates.
+		date = line.substr(0, line.find(' '));
+		key	= Date(date);
 
+		value = line.substr(line.find('|') + 1);
+		len = value.find_first_not_of(" \n\t\v\f\r");
+		value.erase(0, len);
+		len = value.find_last_not_of(" \n\t\v\f\r");
+		value.erase(len + 1);
+
+		if (key.is_valid() == false)
+			std::cout << "Error: bad input => " << key.getRaw() << std::endl;
+		else if (value.find_first_not_of("0123456789-.", 0) != std::string::npos)
+			std::cout << "Error: bad input => " << value << std::endl;
+		else if (value.size() > 10 || (value.size() == 10 && value.compare(STR_INT_MAX) > 0))
+			std::cout << "Error: too large a number." << std::endl;
+		else if (std::atof(value.c_str()) < 0.0)
+			std::cout << "Error: not a positive bumber." << std::endl;
+		else
+		{
+			// Compute the rate here
+			// Write a function that finds the latest most recent date associated with "key" in db map.
+
+			
+
+			std::cout << key.getRaw() << " => " << value << " = " << rate << std::endl;
+		}
 	}
+
+	return EXIT_SUCCESS;
 }
