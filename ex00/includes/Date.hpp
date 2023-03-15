@@ -6,7 +6,7 @@
 /*   By: smagdela <smagdela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 13:33:17 by smagdela          #+#    #+#             */
-/*   Updated: 2023/03/15 16:11:13 by smagdela         ###   ########.fr       */
+/*   Updated: 2023/03/15 17:47:01 by smagdela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ class Date
 		bool		operator==( Date const & rhs ) const;
 		bool		operator<=( Date const & rhs ) const;
 		bool		operator>=( Date const & rhs ) const;
+		bool		operator!=( Date const & rhs ) const;
+
 
 		bool		is_valid( void ) const;
 

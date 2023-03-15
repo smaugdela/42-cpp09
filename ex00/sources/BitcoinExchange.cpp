@@ -6,7 +6,7 @@
 /*   By: smagdela <smagdela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 17:48:57 by smagdela          #+#    #+#             */
-/*   Updated: 2023/03/15 16:18:28 by smagdela         ###   ########.fr       */
+/*   Updated: 2023/03/15 17:56:23 by smagdela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,16 @@ int	BitcoinExchange(std::ifstream &file, std::ifstream &database_file)
 	{
 		if (line.empty())
 			continue ;
+
 		date = line.substr(0, line.find(','));
 		key = Date(date);
+
 		if (key.is_valid() == false)
 			continue ;
-		
-		std::cout << "csv Date: " << key.getRaw() << std::endl;
 
 		value = line.substr(line.find(',') + 1);
 		if (value.find_first_not_of("0123456789.", 0) != std::string::npos)
 			continue ;
-
-		std::cout << "csv value: " << value << std::endl;
 
 		db[key] = std::atof(value.c_str());
 	}
@@ -60,23 +58,24 @@ int	BitcoinExchange(std::ifstream &file, std::ifstream &database_file)
 
 		if (key.is_valid() == false)
 			std::cout << "Error: bad input => " << key.getRaw() << std::endl;
-		else if (value.find_first_not_of("0123456789-.", 0) != std::string::npos)
-			std::cout << "Error: bad input => " << value << std::endl;
+		else if (value.find_first_not_of("0123456789-.,", 0) != std::string::npos)
+			std::cout << "Error: bad value input => " << value << std::endl;
 		else if (value.size() > 10 || (value.size() == 10 && value.compare(STR_INT_MAX) > 0))
 			std::cout << "Error: too large a number." << std::endl;
 		else if (std::atof(value.c_str()) < 0.0)
-			std::cout << "Error: not a positive bumber." << std::endl;
+			std::cout << "Error: not a positive number." << std::endl;
 		else
 		{
-			// Compute the rate here
-			// Write a function that finds the latest most recent date associated with "key" in db map.
-			std::map<Date, float>::const_iterator	it;
+			std::map<Date, float>::iterator	it;
 			it = db.lower_bound(key);
-			if (it == db.begin())
+			if (it == db.begin() && it->first != key)
 				std::cout << "Error: no data that early." << std::endl;
+			else if (it == db.end())
+				std::cout << "Error: no data that late." << std::endl;
 			else
 			{
-				--it;
+				if (it->first != key)
+					--it;
 				std::cout << key.getRaw() << " => " << value << " = " << std::atof(value.c_str()) * it->second << std::endl;
 			}
 		}

@@ -6,7 +6,7 @@
 /*   By: smagdela <smagdela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 13:33:17 by smagdela          #+#    #+#             */
-/*   Updated: 2023/03/15 16:15:18 by smagdela         ###   ########.fr       */
+/*   Updated: 2023/03/15 17:56:08 by smagdela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ Date::Date() : _raw(), _year(INT_MAX), _month(INT_MAX), _day(INT_MAX), _validity
 
 Date::Date( std::string str_date )
 {
-	// Trim spaces from str_date
 	size_t	len;
 
 	len = str_date.find_first_not_of(" \n\t\v\f\r");
@@ -29,17 +28,27 @@ Date::Date( std::string str_date )
 	len = str_date.find_last_not_of(" \n\t\v\f\r");
 	str_date.erase(len + 1);
 
+	_raw = str_date;
+
 	std::string	year, month, day;
+	if (str_date.size() != 10)
+	{
+		_validity = false;
+		this->_year = INT_MAX;
+		this->_month = INT_MAX;
+		this->_day = INT_MAX;
+		return ;
+	}
+
 	year = str_date.substr(0, 4);
-	month = str_date.substr(2, 2);
-	day = str_date.substr(2, 2);
+	month = str_date.substr(6, 2);
+	day = str_date.substr(8, 2);
 
 	this->_year = std::atoi(year.c_str());
 	this->_month = std::atoi(month.c_str());
 	this->_day = std::atoi(day.c_str());
 
-	// Check the validity of this date
-	if (_raw.size() == 10 && _raw[4] == '-' && _raw[7] == '-' && _raw.find_first_not_of("0123456789-") == std::string::npos
+	if (_raw[4] == '-' && _raw[7] == '-' && _raw.find_first_not_of("0123456789-") == std::string::npos
 		&& (_month > 0 && _month < 13) && (_day > 0 && _day < 32))
 	{
 		_validity = true;
@@ -131,6 +140,17 @@ bool		Date::operator>=( Date const & rhs ) const
 		return true;
 	return false;
 }
+
+bool		Date::operator!=( Date const & rhs ) const
+{
+	if (this->_validity == false || rhs.is_valid() == false)
+		return (false);
+
+	if (*this == rhs)
+		return false;
+	return true;
+}
+
 
 bool		Date::is_valid( void ) const
 {
