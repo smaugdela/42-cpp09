@@ -6,7 +6,7 @@
 /*   By: smagdela <smagdela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 17:48:57 by smagdela          #+#    #+#             */
-/*   Updated: 2023/03/15 17:56:23 by smagdela         ###   ########.fr       */
+/*   Updated: 2023/03/16 10:19:35 by smagdela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,12 @@ int	BitcoinExchange(std::ifstream &file, std::ifstream &database_file)
 		value.erase(0, len);
 		len = value.find_last_not_of(" \n\t\v\f\r");
 		value.erase(len + 1);
+		if (value.find(",") != std::string::npos)
+			value.replace(value.find(","), 1, ".");
 
 		if (key.is_valid() == false)
 			std::cout << "Error: bad input => " << key.getRaw() << std::endl;
-		else if (value.find_first_not_of("0123456789-.,", 0) != std::string::npos)
+		else if (value.find_first_not_of("0123456789-.", 0) != std::string::npos)
 			std::cout << "Error: bad value input => " << value << std::endl;
 		else if (value.size() > 10 || (value.size() == 10 && value.compare(STR_INT_MAX) > 0))
 			std::cout << "Error: too large a number." << std::endl;
